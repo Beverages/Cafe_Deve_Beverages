@@ -1,0 +1,76 @@
+
+# 1 "F:\BEVERAGES_ENHANCEMENT\SOFTWARE_DESIGN\MASTER_PIC_16F877A\2015_09_13\myitoa.c"
+
+# 2 "F:\BEVERAGES_ENHANCEMENT\SOFTWARE_DESIGN\MASTER_PIC_16F877A\2015_09_13\myitoa.h"
+unsigned char itoai;
+void myitoa(int i,char *p);
+void rev(char* buf);
+
+# 4 "C:\Program Files\HI-TECH Software\PICC\9.82\include\string.h"
+typedef int ptrdiff_t;
+typedef unsigned size_t;
+typedef unsigned short wchar_t;
+
+
+extern int errno;
+
+# 22
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
+
+# 35
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
+
+
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
+
+# 4 "F:\BEVERAGES_ENHANCEMENT\SOFTWARE_DESIGN\MASTER_PIC_16F877A\2015_09_13\myitoa.c"
+void rev(char* buf)
+{
+char t,*f,*l;
+for(f=buf,l=buf+strlen(buf)-1;f<l;f++,l--)
+{
+if(*buf == '-')
+{
+buf++;
+}
+t=*f;
+*f=*l;
+*l=t;
+}
+}
+
+void myitoa(int val,char *p)
+{
+itoai=0;
+while(val)
+{
+*(p+itoai)=(val%10)+0x30;
+val=val/10;
+itoai++;
+}
+*(p+itoai)='\0';
+rev(p);
+}

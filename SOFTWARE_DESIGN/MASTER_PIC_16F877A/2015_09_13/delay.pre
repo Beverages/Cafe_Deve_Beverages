@@ -1,0 +1,29 @@
+
+# 1 "F:\BEVERAGES_ENHANCEMENT\SOFTWARE_DESIGN\MASTER_PIC_16F877A\2015_09_13\delay.c"
+
+# 22 "F:\BEVERAGES_ENHANCEMENT\SOFTWARE_DESIGN\MASTER_PIC_16F877A\2015_09_13\delay.h"
+extern void DelayMs(unsigned short cnt);
+
+# 17 "F:\BEVERAGES_ENHANCEMENT\SOFTWARE_DESIGN\MASTER_PIC_16F877A\2015_09_13\delay.c"
+void DelayMs(unsigned short cnt)
+
+{
+
+# 34
+unsigned char i;
+
+do {
+
+i = 4;
+
+do {
+
+{ unsigned char _dcnt; _dcnt = (175)*((20*1000L)/(12*1000L)); while(--_dcnt != 0) continue; };
+
+} while(--i);
+
+} while(--cnt);
+
+
+
+}

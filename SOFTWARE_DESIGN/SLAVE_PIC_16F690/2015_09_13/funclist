@@ -1,0 +1,14 @@
+_LCD_INIT: CODE, 561 0 91
+_Display_In_Lcd: CODE, 213 0 180
+___aldiv: CODE, 393 0 168
+_Lcd_String: CODE, 808 0 74
+_ISR: CODE, 981 0 41
+i1_Lcd_Write: CODE, 730 0 78
+_UART_INIT: CODE, 882 0 58
+_main: CODE, 940 0 41
+_DelayMs: CODE, 1022 0 35
+_SYSTEM_INIT: CODE, 1090 0 26
+_SendByteSerially: CODE, 1174 0 12
+i1_DelayMs: CODE, 1057 0 33
+_Lcd_Write: CODE, 652 0 78
+Total: 915

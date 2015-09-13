@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <pic16f689.h>
+ 
+// CONFIG
+#pragma config FOSC = INTRCIO   // Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA4/OSC2/CLKOUT pin, I/O function on RA5/OSC1/CLKIN)
+#pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
+#pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
+#pragma config MCLRE = ON       // MCLR Pin Function Select bit (MCLR pin function is MCLR)
+#pragma config CP = OFF         // Code Protection bit (Program memory code protection is disabled)
+#pragma config CPD = OFF        // Data Code Protection bit (Data memory code protection is disabled)
+#pragma config BOREN = ON       // Brown-out Reset Selection bits (BOR enabled)
+#pragma config IESO = ON        // Internal External Switchover bit (Internal External Switchover mode is enabled)
+#pragma config FCMEN = ON       // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is enabled)
+ 
+void init()
+{
+    //Port C
+    TRISC = 0x00;
+    PORTC = 0x00;
+ 
+    IRCF0 = 0;//OSCCON Register - IRCF Bits for 4MHz
+    IRCF1 = 1;
+    IRCF2 = 1;
+ 
+    /**************
+     *    USART   *
+     **************/
+ 
+    SPBRG = 0x19;//Page 165 / BaudRate 9600 @ 4MHz
+    BRGH = 1;
+    BRG16 = 0;
+   
+    SYNC = 0;   //Asynchronous
+    SPEN = 1;   //enable serial port pins
+    CREN=1;     //enable reception
+    SREN = 0;   //No effect
+    TXIE=0; //disable tx interrupts
+    RCIE=0; //disable rx interrupts
+    TX9 = 0;    //8-bit transmission
+    RX9 = 0;    //8-bit reception
+    TXEN=0;     //reset transmitter
+    TXEN=1;     //enable the transmitter
+}
+ 
+void delay(int x)
+{
+    int c = x*1000;
+    while(c--);
+}
+ 
+void transmitMsg(register const char *msg)
+{
+    char c;
+    while(c = *msg++)
+    {
+        while(!TXIF);
+        TXREG = c;
+        delay(2);
+    }
+}
+ 
+/*
+ *
+ */
+int main(int argc, char** argv)
+{
+    init();
+    char tmp_rcreg;
+   
+    transmitMsg("Echo service started ...\r\n");
+ 
+    while(1)
+    {
+        PORTC = 0x00;
+        transmitMsg("Input : \r\n");
+ 
+        while(!RCIF);
+        tmp_rcreg = RCREG;
+ 
+        while(!TXIF);
+        TXREG = tmp_rcreg;
+ 
+        PORTC = 0x01;
+        delay(9);
+    }
+   
+    return (EXIT_SUCCESS);
+}
+ 

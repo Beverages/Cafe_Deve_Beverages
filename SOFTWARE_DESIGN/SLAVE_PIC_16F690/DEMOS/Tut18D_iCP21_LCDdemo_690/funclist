@@ -1,0 +1,9 @@
+_lcd_puts: CODE, 1858 0 82
+_main: CODE, 1735 0 45
+_DelayMs: CODE, 1665 0 33
+_lcd_clear: CODE, 1623 0 15
+_lcd_goto: CODE, 1698 0 37
+_System_init: CODE, 1638 0 27
+_lcd_write: CODE, 1780 0 78
+_lcd_init: CODE, 1940 0 108
+Total: 425

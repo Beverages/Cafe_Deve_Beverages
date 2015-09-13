@@ -1,0 +1,67 @@
+#ifndef _header
+	#include<htc.h>
+	#define _XTAL_FREQ 20000000   //MHz
+#endif
+
+#define ON 1
+#define OFF 0
+
+#define TRUE 1
+#define FALSE 0
+
+#define ENABLE 1
+#define DISABLE 0
+
+#define PRESSED 0
+//#define RELEASED 1
+
+#define DUMMY 0
+/*
+#define NORMAL_COFFEE_BUTTON   	RC5
+#define NORMAL_TEA_BUTTON 		RC4
+#define LIGHT_COFFEE_BUTTON 	RB0
+#define LIGHT_TEA_BUTTON 		RB1
+#define BLACK_COFFEE_BUTTON 	RB2
+#define BLACK_TEA_BUTTON 		RB3
+#define MILK_BUTTON 			RB4
+#define HOT_WATER_BUTTON 		RB5
+#define EXTRA_BUTTON 			RB6
+#define MENU_BUTTON 			RB7
+*/
+
+#define NORMAL_COFFEE_BUTTON   	RB6
+#define NORMAL_TEA_BUTTON 		RB7
+#define LIGHT_COFFEE_BUTTON 	RB4
+#define LIGHT_TEA_BUTTON 		RB5
+#define BLACK_COFFEE_BUTTON 	RB2
+#define BLACK_TEA_BUTTON 		RB3
+#define MILK_BUTTON 			RB0
+#define HOT_WATER_BUTTON 		RB1
+#define EXTRA_BUTTON 			RC5
+#define MENU_BUTTON 			RC4
+
+
+
+//RA0 --> ANALOG CHANNEL1 IF ADCON LOWER NIBBLE VALUE IS 1110. ALL OTHER ARE DIGITAL
+
+//RA0, RA1 & RA3 --> ANALOG CHANNEL1, 2, 4 IF ADCON LOWER NIBBLE VALUE IS 0100. ALL OTHER ARE DIGITAL
+
+#define MILK_MOTOR_1			RA2
+#define MILK_MOTOR_2			RA4
+
+#define MIXING_WATER_VALVE		RA5
+#define COFFEE_VALVE			RE0
+#define TEA_VALVE				RE1
+#define VIBER_MOTOR 			RE2
+
+#define HOT_WATER_VALVE			RC0
+#define COFFEE_HOT_WATER_VALVE 	RC1
+#define TEA_HOT_WATER_VALVE		RC2
+
+#define HEATER_1				RC3
+#define HEATER_2				RD0
+
+#define BUZZER					RD1
+
+
+void Port_Init();

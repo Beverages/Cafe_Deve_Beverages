@@ -1,0 +1,132 @@
+#ifndef _header
+	#include<htc.h>
+	#define _XTAL_FREQ 20000000   //MHz
+#endif
+
+enum valve_flags{
+_Milk_Valve = 1,
+_Mixing_Hot_Water_Valve,
+_Hot_Water_Valve,
+_Coffee_Hot_Water_Valve,
+_Coffee_Valve,
+_Tea_Hot_Water_Valve,
+_Tea_Valve,
+_Viber_Motor,
+_Master_Valve,
+_Heater
+};
+enum valve_flags _ON,_OFF;
+
+bit Enable_Milk_Valve, 
+Enable_Mixing_Hot_Water_Valve,
+Enable_Hot_Water_Valve,
+Enable_Coffee_Hot_Water_Valve,
+Enable_Coffee_Valve,
+Enable_Tea_Hot_Water_Valve,
+Enable_Tea_Valve,
+Enable_Viber_Motor,
+Enable_Master_Valve,
+Enable_Heater;
+
+enum button_flags{
+_NORMAL_COFFEE_BUTTON = 1,
+_NORMAL_TEA_BUTTON,
+_LIGHT_COFFEE_BUTTON,
+_LIGHT_TEA_BUTTON,
+_BLACK_COFFEE_BUTTON,
+_BLACK_TEA_BUTTON,
+_MILK_BUTTON,
+_EXTRA_BUTTON,
+_HOT_WATER_BUTTON,
+_MENU_BUTTON
+};
+enum button_flags _PRESSED,_CHOICE_SELECTED,
+	_SHORTCUT_PRESSED;
+
+bit _SHORTCUT;
+
+enum mode_flags{
+_Normal_Mode=1,
+_Password,
+_Config_Mode,
+_Valves,
+_Selection,
+_Coffee_Dication_Time,
+_Tea_Dication_Time,
+_Temperature,
+_Boiler_Filling,
+_Auto_Flush_Timing,
+_Manual_Flush_Timing,
+_Cup_Count,
+_Count_Reset,
+_Access_Card,
+_Shortcut_Mode
+};
+enum mode_flags _ENABLE_MODE,_DISABLE_MODE,_PREVIOUS_MODE=0;
+
+bit Enable_Normal_Mode,
+Enable_Password,
+Enable_Config_Mode,
+Enable_Valves,
+Enable_Selection,
+Enable_Coffee_Dication_Time,
+Enable_Tea_Dication_Time,
+Enable_Temperature,
+Enable_Boiler_Filling,
+Enable_Auto_Flush_Timing,
+Enable_Manual_Flush_Timing,
+Enable_Cup_Count,
+Enable_Count_Reset,
+Enable_Access_Card,
+Enable_Shortcut_Mode;
+
+enum shortcut_flags{
+_Preparation=1,
+_Cleaning,
+_Countdisplay,
+_Autoflush
+};
+enum shortcut_flags _PROCESS=0,_PREVIOUS_PROCESS;
+
+bit _Demo,_temp_flag=0;
+
+struct item
+{
+	unsigned int MILK:1;
+	unsigned int MIXING_HOT_WATER:1;
+	unsigned int COFFEE_DICATION:1;
+	unsigned int TEA_DICATION:1;
+	unsigned int VIBR_MOTOR:1;
+	unsigned int MASTR_VALVE:1;
+}VALVE,MENU[9];
+
+
+
+unsigned int i=0,j=0,password,temperature,ADC_value,time;
+
+unsigned int total_count=0,temp_count=0;
+
+unsigned char Next=0,Selection_Next=0;
+
+unsigned char buff[4];
+
+#define Lcd_Print_Yes Lcd_Data('Y');
+#define Lcd_Print_No Lcd_Data('N');
+
+//#define Lcd_Print_Selection Lcd_String("SELECTION",0,0);
+
+void Print_Name();
+void Mode_Init();
+void key_press();
+void enable_valves();
+void onthevalve();
+void offthevalve();
+void control_valve(unsigned int load_time, unsigned int delay_time);
+void call_control_valve();
+void change_modes();
+void Write_ValveIn_Memory(struct item VALVE,int loc);
+struct item Read_ValveFrom_Memory(int MEM);
+void print_yes_no(unsigned int option);
+void run_shortcut_sequence();
+void count_write(unsigned char addr1,unsigned char addr2,unsigned int total_count);
+int count_read(unsigned char addr1, unsigned char addr2);

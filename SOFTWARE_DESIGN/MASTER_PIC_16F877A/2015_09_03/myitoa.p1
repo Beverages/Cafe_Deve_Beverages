@@ -1,0 +1,141 @@
+Version 3.2 HI-TECH Software Intermediate Code
+"2 F:\BEVERAGES_ENHANCEMENT\SOFTWARE_DESIGN\MASTER_PIC_16F877A\2015_09_03\myitoa.h
+[v _itoai `uc  1 e ]
+"55 C:\Program Files\HI-TECH Software\PICC\9.82\include\string.h
+[v _strlen `(ui  0 ef1`*Cuc ]
+[; ;myitoa.h: 2: unsigned char itoai;
+[; ;myitoa.h: 3: void myitoa(int i,char *p);
+[; ;myitoa.h: 4: void rev(char* buf);
+[; ;string.h: 4: typedef int ptrdiff_t;
+[; ;string.h: 5: typedef unsigned size_t;
+[; ;string.h: 6: typedef unsigned short wchar_t;
+[; ;string.h: 9: extern int errno;
+[; ;string.h: 22: extern void * memcpy(void *, const void *, size_t);
+[; ;string.h: 23: extern void * memmove(void *, const void *, size_t);
+[; ;string.h: 24: extern void * memset(void *, int, size_t);
+[; ;string.h: 35: extern char * strcat(char *, const char *);
+[; ;string.h: 36: extern char * strcpy(char *, const char *);
+[; ;string.h: 37: extern char * strncat(char *, const char *, size_t);
+[; ;string.h: 38: extern char * strncpy(char *, const char *, size_t);
+[; ;string.h: 39: extern char * strdup(const char *);
+[; ;string.h: 40: extern char * strtok(char *, const char *);
+[; ;string.h: 43: extern int memcmp(const void *, const void *, size_t);
+[; ;string.h: 44: extern int strcmp(const char *, const char *);
+[; ;string.h: 45: extern int stricmp(const char *, const char *);
+[; ;string.h: 46: extern int strncmp(const char *, const char *, size_t);
+[; ;string.h: 47: extern int strnicmp(const char *, const char *, size_t);
+[; ;string.h: 48: extern void * memchr(const void *, int, size_t);
+[; ;string.h: 49: extern size_t strcspn(const char *, const char *);
+[; ;string.h: 50: extern char * strpbrk(const char *, const char *);
+[; ;string.h: 51: extern size_t strspn(const char *, const char *);
+[; ;string.h: 52: extern char * strstr(const char *, const char *);
+[; ;string.h: 53: extern char * stristr(const char *, const char *);
+[; ;string.h: 54: extern char * strerror(int);
+[; ;string.h: 55: extern size_t strlen(const char *);
+[; ;string.h: 56: extern char * strchr(const char *, int);
+[; ;string.h: 57: extern char * strichr(const char *, int);
+[; ;string.h: 58: extern char * strrchr(const char *, int);
+[; ;string.h: 59: extern char * strrichr(const char *, int);
+"5 F:\BEVERAGES_ENHANCEMENT\SOFTWARE_DESIGN\MASTER_PIC_16F877A\2015_09_03\myitoa.c
+[v _rev `(v  1 ef1`*uc ]
+{
+[; ;myitoa.c: 4: void rev(char* buf)
+[; ;myitoa.c: 5: {
+[e :U _rev ]
+[v _buf `*uc  1 r1 ]
+[f ]
+"6
+[v _t `uc  1 a ]
+[v _f `*uc  1 a ]
+[v _l `*uc  1 a ]
+[; ;myitoa.c: 6: char t,*f,*l;
+[; ;myitoa.c: 7: for(f=buf,l=buf+strlen(buf)-1;f<l;f++,l--)
+"7
+{
+[e ; = _f _buf = _l - + _buf * -> ( _strlen (1 -> _buf `*Cuc `ux -> -> # *U _buf `ui `ux * -> -> 1 `i `x -> -> # *U + _buf * -> ( _strlen (1 -> _buf `*Cuc `ux -> -> # *U _buf `ui `ux `i `x ]
+[e $U 5  ]
+"8
+[e :U 2 ]
+[; ;myitoa.c: 8: {
+{
+[; ;myitoa.c: 9: if(*buf == '-')
+"9
+[e $ ! == -> *U _buf `ui -> 45 `ui 6  ]
+[; ;myitoa.c: 10: {
+"10
+{
+[; ;myitoa.c: 11: buf++;
+"11
+[e ++ _buf * -> -> 1 `i `x -> -> # *U _buf `i `x ]
+"12
+}
+[e :U 6 ]
+[; ;myitoa.c: 12: }
+[; ;myitoa.c: 13: t=*f;
+"13
+[e = _t *U _f ]
+[; ;myitoa.c: 14: *f=*l;
+"14
+[e = *U _f *U _l ]
+[; ;myitoa.c: 15: *l=t;
+"15
+[e = *U _l _t ]
+"16
+}
+"7
+[e ; ++ _f * -> -> 1 `i `x -> -> # *U _f `i `x -- _l * -> -> 1 `i `x -> -> # *U _l `i `x ]
+[e :U 5 ]
+[e $ < _f _l 2  ]
+[e :U 3 ]
+"16
+}
+[; ;myitoa.c: 16: }
+[; ;myitoa.c: 17: }
+"17
+[e :UE 1 ]
+}
+"20
+[v _myitoa `(v  1 ef2`i`*uc ]
+{
+[; ;myitoa.c: 19: void myitoa(int val,char *p)
+[; ;myitoa.c: 20: {
+[e :U _myitoa ]
+[v _val `i  1 r1 ]
+[v _p `*uc  1 r2 ]
+[f ]
+[; ;myitoa.c: 21: itoai=0;
+"21
+[e = _itoai -> -> 0 `i `uc ]
+[; ;myitoa.c: 22: while(val)
+"22
+[e $U 8  ]
+[e :U 9 ]
+[; ;myitoa.c: 23: {
+"23
+{
+[; ;myitoa.c: 24: *(p+itoai)=(val%10)+0x30;
+"24
+[e = *U + _p * -> _itoai `ux -> -> # *U _p `ui `ux -> + % _val -> 10 `i -> 48 `i `uc ]
+[; ;myitoa.c: 25: val=val/10;
+"25
+[e = _val / _val -> 10 `i ]
+[; ;myitoa.c: 26: itoai++;
+"26
+[e ++ _itoai -> -> 1 `i `uc ]
+"27
+}
+[e :U 8 ]
+"22
+[e $ != _val -> 0 `i 9  ]
+[e :U 10 ]
+[; ;myitoa.c: 27: }
+[; ;myitoa.c: 28: *(p+itoai)='\0';
+"28
+[e = *U + _p * -> _itoai `ux -> -> # *U _p `ui `ux -> -> 0 `ui `uc ]
+[; ;myitoa.c: 29: rev(p);
+"29
+[e ( _rev (1 _p ]
+[; ;myitoa.c: 30: }
+"30
+[e :UE 7 ]
+}

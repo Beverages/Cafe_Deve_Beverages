@@ -1,0 +1,50 @@
+Version 3.2 HI-TECH Software Intermediate Code
+[; ;delay.h: 22: extern void DelayMs(unsigned short cnt);
+"19 F:\BEVERAGES_ENHANCEMENT\SOFTWARE_DESIGN\SLAVE_PIC_16F690\2015_09_04\delay.c
+[v _DelayMs `(v  1 ef1`us ]
+{
+[; ;delay.c: 17: void DelayMs(unsigned short cnt)
+[; ;delay.c: 19: {
+[e :U _DelayMs ]
+[v _cnt `us  1 r1 ]
+[f ]
+"34
+[v _i `uc  1 a ]
+[; ;delay.c: 34: unsigned char i;
+[; ;delay.c: 36: do {
+"36
+[e :U 4 ]
+{
+[; ;delay.c: 38: i = 4;
+"38
+[e = _i -> -> 4 `i `uc ]
+[; ;delay.c: 40: do {
+"40
+[e :U 7 ]
+{
+[; ;delay.c: 42: { unsigned char _dcnt; _dcnt = (175)*((20*1000L)/(12*1000L)); while(--_dcnt != 0) continue; };
+"42
+{
+[v __dcnt `uc  1 a ]
+[e = __dcnt -> * -> -> 175 `i `l / * -> -> 20 `i `l -> 1000 `l * -> -> 12 `i `l -> 1000 `l `uc ]
+[e $U 8  ]
+[e :U 9 ]
+[e $U 8  ]
+[e :U 8 ]
+[e $ != -> =- __dcnt -> -> 1 `i `uc `i -> 0 `i 9  ]
+[e :U 10 ]
+}
+"44
+}
+[; ;delay.c: 44: } while(--i);
+[e $ != -> =- _i -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 7  ]
+[e :U 6 ]
+"46
+}
+[; ;delay.c: 46: } while(--cnt);
+[e $ != -> =- _cnt -> -> 1 `i `us `ui -> -> -> 0 `i `us `ui 4  ]
+[e :U 3 ]
+[; ;delay.c: 50: }
+"50
+[e :UE 1 ]
+}
